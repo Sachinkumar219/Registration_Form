@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 2rem;
+        }
+
+        .error-message, .success-message {
+            display: none; /* Hide messages by default */
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            color: red;
+        }
+
+        .success-message {
+            color: green;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+        <form action="/login" method="post">
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <br>
+        <a href="/register">Register</a>
+    </div>
+    <script>
+        // Function to get query parameters
+        function getQueryParam(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // Show error or success message if present in query parameters
+        const errorMessage = getQueryParam('error');
+        const successMessage = getQueryParam('success');
+
+        if (errorMessage) {
+            const errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.textContent = errorMessage;
+            errorMessageElement.style.display = 'block'; // Show the error message
+        }
+
+        if (successMessage) {
+            const successMessageElement = document.getElementById('success-message');
+            successMessageElement.textContent = successMessage;
+            successMessageElement.style.display = 'block'; // Show the success message
+        }
+    </script>
+</body>
+</html>
